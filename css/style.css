@@ -1,6 +1,35 @@
 body {
-	background-color: black;
+	background-color: cadetblue;
 	background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Chicago_Wards_Blank.svg/1200px-Chicago_Wards_Blank.svg.png);
 	background-position: auto 0;
-	background-size: 100%;
+	background-size: cover;
+}
+
+/*consider placement of article tags*/
+p {
+	position: relative;
+	background-color:;
+	border-radius: 20px;
+	color:white;
+	font-weight: 600;
+	text-overflow:
+	top: 85%;
+	/*figure out how to position*/
+}
+div {
+	background-color:white;
+	display: inline-block;
+	color:cadetblue;
+	border-radius: 20px;
+}
+#display-text {
+	position: absolute;
+	background-color:rgba(255, 200, 145, .9);
+	display: inline-block;
+	color:cadetblue;
+	border-radius: 20px;
+	top: 35%;
+  	left: 10%;
+  	text-align: left;
+  	padding:25px;	
 }
