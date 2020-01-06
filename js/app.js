@@ -27,80 +27,140 @@
 
 // } //end of class
 
-// consider a Region class for which varying methods will be applied.
-class Region {
-	constructor(neighborhood) {
-		// this.Neighborhood = <-- why include this line
-		const origin = this.neighborhood //pulls destinations randomly
-		const destinations = [neighborhood, neighborhood, downtown, suburb]
+
+
+
+
+class Trip {
+
+	constructor(lorem) {
+
+		// later: use origin + destination to determine value
+
+		// this.lorem = Math.random() * 30
 	}
+
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const game = { 
-	points: 0,
+	points: 0, // 
 	days: 0, // equivalent to rounds
 	trips: 0, // []
-	userLocation: [],
 
-	pickWhereToStartMessage () { // 1A. this is the event handler method() that will instruct user to choose region. [SKIP to request cycle] 
+	currentRegion: "", // this will be set when user clicks region
 
-		const pickRegion = document.querySelector('#choose-region')
-		const options = document.createElement('p')
-		options.setAttribute('id', 'options')
-		options.innerText = `Select a region to get started` //consider interpolating options
-		pickRegion.appendChild(options)
+	tripRequest: null,
 
-		// const confirmation = document.createElement('button')
-		// confirmation.setAttribute('id', 'confirm')
-		// options.appendChild(confirmation)
-		// confirmation.innerHTML = 'Go Online'
-		// pickRegion.hidden = false
-		//include hide/show functionality
-		//consider calling the grind method()
-	}, 
-	grind() { //stage method that increments KPIs √√√
+	userLocation: [], 
+
+	// called when user clicks button
+	chooseRegion(region) {
+		// sets currentRegion to region
+
+		// tell the user the region they chose  (use KPI scoreboard)
+		console.log(region);
+
+		this.currentRegion = this.region
+		const showOrigin = document.querySelector('#region')
+		showOrigin.innerText = this.region
+
+		console.log(this.currentRegion);
+		// this.getNextTrip()
+
+
+	},
+
+	getNextTrip() {
+		// create Trip -- instantiate (later: use currentRegion)
+
+
+		// <<< Darron: build out trip class now >>>
+
+
+		// object -- store in this.tripRequest
+
+		// displayTripRequest()
+
+	},
+
+
+	displayTripRequest() { //stage method that increments KPIs √√√
 		
+
 		const options = document.querySelector('#options')
 	
 		options.innerText = 'You have a new request!'
+		
 		// show the buttons 
+		const displayButtons = document.querySelector
 
 
-/* 1. move to html
-		const confirmation = document.createElement('button')
-		confirmation.setAttribute('id', 'confirm')
-		options.appendChild(confirmation)
-		confirmation.innerHTML = 'Accept'
 
-		const decline = document.createElement('button')
-		decline.setAttribute('id', 'decline')
-		options.appendChild(decline)
-		decline.innerHTML = 'Decline'//param 1 isn't a type of node
+/* 1. 	
 
+		Also add rating buttons in html and hide them
 
 */
-		// if (input === "#confirm") {
-		// 	this.trips += 1
-		// 	console.log(this.trips); 
-		// 	if (this.trips % 10 === 0) {
-		// 		this.days +=1
-		// 		console.log(this.days); 
-		// 	} //adds a day for every 10 trips
-		// }	
 		
 	},//End of 1st Method
+
+	accept() {
+
+		// text telling what happened -- 28 pts user was rude etc
+
+		// adds points to scoreboard
+
+		// prompt for rating (add more text) -- show ragin buttons
+
+
+	},
+
+	rateRider() {
+		// hide rating buttons
+
+		// getNextTrip()
+
+
+	},
+
+	decline() {
+
+		// -1 point, tell user, 
+
+		// pickWhereToStartMessage
+
+	},
+
+
 	goalSetter(){
-		// put the following inside a goal setter method/ call in the staging method
+
 		const bills = [9, 14, 19]
 
 		const goals = document.querySelector("#goal-text")
-		const interface = document.createElement('p')
 
+		const interface = document.createElement('p')
 		interface.innerText = `Make at least $${bills[Math.floor(Math.random() * bills.length)]} today!` //if points are less than this number by the end of the day, player loses round. 
+
 		goals.appendChild(interface)
 
 	},
+
 	requestCycleCentral () { // 1B. on click of the downtown button call the following code block. // call central param to denote origin in if statment
 		const region = document.querySelector('#downtown') //button
 		const dtRequest = document.createElement('p')
@@ -114,6 +174,7 @@ const game = {
 		// const destination = //Math.floor(Math.random() * mixedtrips.length)// not yet an option
 		// if (origin === central and destination === n, s, ap, or, dt) {
 			//}
+
 	}
 
 // 	// where is user (n, s, d, a) -- store data here <--- why am I storing this data
@@ -128,27 +189,34 @@ const game = {
 
 }//End of Game Object 
 
-game.pickWhereToStartMessage()
+
+// when game loads...
 game.goalSetter()
 
-document.querySelector('#central').onclick = function () {// move outside of obj later. insert actual functionality also. 
+document.querySelector('#downtown').addEventListener('click', (e) => {// move outside of obj later. insert actual functionality also. 
 	// console.log(e.target);
-
-	game.grind()	
+	game.chooseRegion('downtown') // pass argument here
 	
-}
+})
 
-
+document.querySelector('#airport').addEventListener('click', (e) => {// move outside of obj later. insert actual functionality also. 
+	// console.log(e.target);
+	console.log('airport')
+	game.chooseRegion('airport') // pass argument here
+	
+})
 
 
 
 document.querySelector('#central').addEventListener('click', (e) => {
+	console.log('downtown')
+
 	// console.log(e.target);
 
 	// game.pickWhereToStartMessage()	
-
-
 })
+
+
 
 // document.querySelector('#confirm').onclick = function () {// move outside of obj later. insert actual functionality also. 
 // 	console.log(e.target);

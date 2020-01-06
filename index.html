@@ -10,8 +10,13 @@
 	<!-- assign divs w buttons -->
 	<!-- on button click, call methods <-- see js -->
 	<!-- create a textbox -->
-	<div id="choose-region"></div>
-	<!-- style='display: none;' -->
+	<div id="choose-region">
+		<p id="options">Select a region to get started</p>
+		<!-- consider attaching the following the region divs -->
+		<button id="confirm" class="displayRequest" style="display: none;">Accept</button>
+		<button id="decline" class="displayRequest" style="display: none;">Decline</button>
+	</div>
+
 
 	</article>
 	<!--  -->
@@ -30,7 +35,7 @@
 	<article id="kpi">
 
 		<ul style="list-style: none;">
-			<li>KPI 1 <span>0</span></li>
+			<li>Your Current Region is:<span id="region"></span></li>
 			<li>KPI 2 <span>0</span></li>
 			<li>KPI 3 <span>0</span></li>
 			<li>KPI 4 <span>0</span></li>
