@@ -8,9 +8,9 @@ body {
 /*consider placement of article tags*/
 p {
 	position: relative;
-	background-color:;
+	/*background-color:;*/
 	border-radius: 20px;
-	color:white;
+	color:red;
 	font-weight: 600;
 	text-overflow:
 	top: 85%;
@@ -22,14 +22,124 @@ div {
 	color:cadetblue;
 	border-radius: 20px;
 }
-#display-text {
+#kpi{
 	position: absolute;
-	background-color:rgba(255, 200, 145, .9);
+	/*background-color:rgba(255, 200, 145, .9);*/
 	display: inline-block;
-	color:cadetblue;
+	background-color: purple;
 	border-radius: 20px;
-	top: 35%;
+	top: 25%;
   	left: 10%;
   	text-align: left;
+  	color:white;
+  	padding: 5px;
+}
+#goal-text {
+	position: absolute;
+	background-color: #cae00d;
+	/*rgba(255, 200, 145, .9);*/
+	display: inline-block;
+	border-radius: 20px;
+	width: 65%;
+	top: 75%;
+  	left: 10%;
+  	text-align: center;
   	padding:25px;	
+}
+#choose-region {
+	/*display: none;*/
+	position: absolute;
+	background-color:#cae00d;
+	/*rgba(255, 200, 145, .9);*/
+	display: inline-block;
+	border-radius: 20px;
+	width: 65%;
+	top: 5%;
+  	left: 10%;
+  	text-align: center;
+  	padding:25px;
+}
+/*downtown div*/
+#central{ 
+	position: absolute;
+	/*background-color:rgba(255, 200, 145, .9);*/
+	display: inline-block;
+	background-color: purple;
+	border-radius: 20px;
+	top: 38%;
+  	left: 65%;
+  	text-align: left;
+  	color:white;
+  	padding: 5px;
+}
+/*downtown button*/
+#downtown{
+	color:red;
+	font-size: 15px;
+	border-radius: 50%;
+	background:none;
+	border:none;
+	text-align: auto 0;
+}
+ /*div*/
+#airport{
+	background-color: purple;
+	position: absolute;
+	top: 15%;
+  	left: 5%;
+  	color: white;
+  	padding: 5px;
+}
+/*button*/
+#nw{
+	color:red;
+	font-size: 15px;
+	border-radius: 50%;
+	background:none;
+	border:none;
+	text-align: auto 0;
+}
+/*div*/
+#suburb{
+	position: absolute;
+	/*background-color:rgba(255, 200, 145, .9);*/
+	display: inline-block;
+	background-color: purple;
+	border-radius: 20px;
+	top: 38%;
+  	left: 25%;
+  	text-align: left;
+  	color:white;
+  	padding: 5px;
+}
+/*button*/
+#w{
+	color:red;
+	font-size: 15px;
+	border-radius: 50%;
+	background:none;
+	border:none;	
+	text-align: auto 0;
+}
+#neighborhood{
+	background-color: purple;
+	position: absolute;
+	top: 55%;
+  	left: 68%;
+  	color: white;
+  	padding: 5px;
+}
+#s{
+	color:red;
+	font-size: 15px;
+	border-radius: 50%;
+	background:none;
+	border:none;
+	text-align: auto 0;
+}
+
+/*.confirm{}*/
+
+.hidden {
+	display: none;
 }
