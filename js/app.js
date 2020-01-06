@@ -33,35 +33,20 @@
 
 class Trip {
 
-	constructor(lorem) {
+	// constructor gets called when you instatitate
+	constructor() { //(origin, destination) 
 
 		// later: use origin + destination to determine value
-
-		// this.lorem = Math.random() * 30
+		this.value = Math.floor(Math.random() * 30)
 	}
 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const game = { 
 	points: 0, // 
 	days: 0, // equivalent to rounds
-	trips: 0, // []
+	trips: [], /// number  of trips is trips.length
 
 	currentRegion: "", // this will be set when user clicks region
 
@@ -73,65 +58,83 @@ const game = {
 	chooseRegion(region) {
 		// sets currentRegion to region
 
-		// tell the user the region they chose  (use KPI scoreboard)
-		console.log(region);
-
-		this.currentRegion = this.region
+		// tell the user the region they chose (use KPI scoreboard) √√√
+		this.currentRegion = region
 		const showOrigin = document.querySelector('#region')
-		showOrigin.innerText = this.region
+		showOrigin.innerHTML = this.currentRegion
 
-		console.log(this.currentRegion);
-		// this.getNextTrip()
+		this.getNextTrip()
 
 
 	},
 
 	getNextTrip() {
 		// create Trip -- instantiate (later: use currentRegion)
+		const nextTrip = new Trip() // value automatically set
+				
+		// object -- store in this.tripRequest √√√
+		this.tripRequest = nextTrip
 
-
-		// <<< Darron: build out trip class now >>>
-
-
-		// object -- store in this.tripRequest
-
-		// displayTripRequest()
+		this.displayTripRequest() //perhaps shouldn't call here as much as in a listener
 
 	},
 
-
-	displayTripRequest() { //stage method that increments KPIs √√√
-		
+	displayTripRequest() { 
 
 		const options = document.querySelector('#options')
 	
-		options.innerText = 'You have a new request!'
+		options.innerText = 'You have a new request!' //shuold this be moved to the chooseRegion() method? 
 		
 		// show the buttons 
-		const displayButtons = document.querySelector
+		const displayButtons = document.querySelectorAll('.displayRequest')
 
-
-
+		displayButtons[0].style.display = 'inline-block'
+		displayButtons[1].style.display = 'inline-block'  //create a listener for each of these buttons
 /* 1. 	
 
 		Also add rating buttons in html and hide them
-
 */
 		
-	},//End of 1st Method
+	},//
 
 	accept() {
+		const displayButtons = document.querySelectorAll('.displayRequest')
 
-		// text telling what happened -- 28 pts user was rude etc
+		displayButtons[0].style.display = 'none'
+		displayButtons[1].style.display = 'none'
 
-		// adds points to scoreboard
+		const status = document.querySelector('#options')
 
-		// prompt for rating (add more text) -- show ragin buttons
+		// text telling what happened -- 28 pts rider was rude etc
+		status.innerText = `you've earned ${this.tripRequest.value}`  //from where should earnings be pulled?
+		const acknowledgement = document.querySelector('#okay')
+		acknowledgement.style.display = 'inline-block'
+
+		// store trip in array
+		const storeTrip = this.trips.push(this.tripRequest)
+		console.log(storeTrip);
+		console.log(this.trips);
 
 
+		// prompt for rating (add more text) -- show ragin buttons <--- consider a seperate method
+
+	},
+	updateScoreboard() { 
+		// updateScoreboard() method 
+
+		// adds points to scoreboard 
+		for(let i = 0; i < trips.length; i ++){
+			this.points += this.trips[i].value
+			const kpiPoints = querySelector('#track-points')
+			kpiPoints.innerHTML = this.points
+			// console.log(this.points);
+			// this.updateScoreboard()
+			console.log('this is the scoreboard');
+		}
 	},
 
 	rateRider() {
+
 		// hide rating buttons
 
 		// getNextTrip()
@@ -193,30 +196,38 @@ const game = {
 // when game loads...
 game.goalSetter()
 
-document.querySelector('#downtown').addEventListener('click', (e) => {// move outside of obj later. insert actual functionality also. 
+
+document.querySelector('#downtown').addEventListener('click', (e) => {//  
 	// console.log(e.target);
-	game.chooseRegion('downtown') // pass argument here
+	game.chooseRegion('Downtown') // pass argument here
+	// game.
 	
 })
-
 document.querySelector('#airport').addEventListener('click', (e) => {// move outside of obj later. insert actual functionality also. 
 	// console.log(e.target);
-	console.log('airport')
-	game.chooseRegion('airport') // pass argument here
+	game.chooseRegion('Airport') // pass argument here
+	
+})
+document.querySelector('#suburb').addEventListener('click', (e) => {// move outside of obj later. insert actual functionality also. 
+	// console.log(e.target);
+	game.chooseRegion('Suburb') // pass argument here
+	
+})
+document.querySelector('#neighborhood').addEventListener('click', (e) => {// move outside of obj later. insert actual functionality also. 
+	// console.log(e.target);
+	game.chooseRegion('Neighborhood') // pass argument here
 	
 })
 
-
-
-document.querySelector('#central').addEventListener('click', (e) => {
-	console.log('downtown')
-
+document.querySelector('#confirm').addEventListener('click', (e) => {
 	// console.log(e.target);
-
-	// game.pickWhereToStartMessage()	
+	game.accept()	
 })
 
-
+document.querySelector('#okay').addEventListener('click', (e) => {
+	// console.log(e.target);
+	game.updateScoreboard()	
+})
 
 // document.querySelector('#confirm').onclick = function () {// move outside of obj later. insert actual functionality also. 
 // 	console.log(e.target);
