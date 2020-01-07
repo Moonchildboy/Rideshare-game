@@ -46,12 +46,13 @@ const game = {
 	points: 0, // 
 	days: 0, // equivalent to rounds
 	trips: [], /// number  of trips is trips.length
-
 	currentRegion: "", // this will be set when user clicks region
+	tripRequest: null, // defined in the getNextTrip() method
+	userLocation: [], // base
 
-	tripRequest: null,
+	// trips left -- so you can lose -- limit 10 or 12
 
-	userLocation: [], 
+	// today's goal
 
 	// called when user clicks button
 	chooseRegion(region) {
@@ -62,19 +63,42 @@ const game = {
 		const showOrigin = document.querySelector('#region')
 		showOrigin.innerHTML = this.currentRegion
 
+
 		this.getNextTrip()
 
 
 	},
 
 	getNextTrip() {
+
+		// check stuff
+
+		// if 0 -- 
+			// if goal not met 
+				// lose 
+				// return 
+
+
+		// did they meet their goal?
+
+		// if goal met
+			// let them stop offer them to stop? (win for 1 round)
+
+
+		// reduce trips left
+
 		// create Trip -- instantiate (later: use currentRegion)
 		const nextTrip = new Trip() // value automatically set
 				
 		// object -- store in this.tripRequest √√√
 		this.tripRequest = nextTrip
+		console.log('this is trip requests',this.tripRequest);
 
 		this.displayTripRequest() //perhaps shouldn't call here as much as in a listener
+
+	},
+
+	lose() {
 
 	},
 
@@ -89,10 +113,14 @@ const game = {
 
 		displayButtons[0].style.display = 'inline-block'
 		displayButtons[1].style.display = 'inline-block'  //create a listener for each of these buttons
-/* 1. 	
+		
+		const ratings = document.querySelectorAll('.rating')
 
-		Also add rating buttons in html and hide them
-*/		
+		ratings[0].style.display = 'none'
+		ratings[1].style.display = 'none'
+		ratings[2].style.display = 'none'
+		ratings[3].style.display = 'none'
+
 	},
 
 	accept() {
@@ -110,9 +138,8 @@ const game = {
 
 		// store trip in the trips array. use this array of objects to access the kpi in the scoreboard method.
 		const storeTrip = this.trips.push(this.tripRequest)
-
-		// do not ca
-
+		const tripCount = document.querySelector('#trip-count')
+		tripCount.innerHTML = this.trips.length
 		// prompt for rating (add more text) -- show ragin buttons <--- consider a seperate method
 	},
 
@@ -129,27 +156,23 @@ const game = {
 			kpiPoints.innerHTML = this.points
 			// console.log(this.points);
 			// this.updateScoreboard()
-			console.log('this is the scoreboard');
+			// console.log('this is the number of trips accepted', this.trips);//logs an infinite loop...
 		}
 		this.rateRider() //should this be called here or on a button click
 	},
 
-	rateRider() {
+	rateRider() { //button click calls the displayTripRequest() method. Restarts accept cycle
 		const rate = document.querySelector('#options')
 		options.innerText = 'Rate your rider ...'
 
-		// call all the buttons
 		const ratings = document.querySelectorAll('.rating')
-
 		for (let i = 0; i < ratings.length; i ++) {
 			ratings[i].style.display = 'inline-block'
 		}
-		// hide ratings buttons
 
 	},
 
-	decline() {
-
+	decline() { //skip to defining a rounds and goals. firstly finish building out class and scoreboad. then go to goal setter method. 
 		// -1 point, tell user, 
 
 		// pickWhereToStartMessage
@@ -158,12 +181,14 @@ const game = {
 
 	goalSetter(){
 
-		const bills = [9, 14, 19]
+		const bills = [9, 14, 19] 
 
 		const goals = document.querySelector("#goal-text")
 
 		const interface = document.createElement('p')
-		interface.innerText = `Make at least $${bills[Math.floor(Math.random() * bills.length)]} today!` //if points are less than this number by the end of the day, player loses round. 
+		//if points are less than this number by the end of the day, player loses round. 
+		// store goal in this. today's goal
+		interface.innerText = `Make at least $${bills[Math.floor(Math.random() * bills.length)]} today!` 
 
 		goals.appendChild(interface)
 
@@ -231,6 +256,12 @@ document.querySelector('#confirm').addEventListener('click', (e) => {
 document.querySelector('#okay').addEventListener('click', (e) => {
 	// console.log(e.target);
 	game.updateScoreboard()	
+})
+
+// change to querySelectorAll -- use for loop to add listeners to each
+document.querySelector('.rating').addEventListener('click', (e) => {
+	// console.log(e.target);
+	game.displayTripRequest() // change to get next	
 })
 
 // document.querySelector('#confirm').onclick = function () {// move outside of obj later. insert actual functionality also. 
