@@ -1,34 +1,20 @@
 
-// // class Trip
-// class Trip {
-// 	// constructor(){} takes origin -- 
-// 	constructor(origin, destination) {
 
-// 	const randomShort = [this.points = this.trips * .65, this.points = this.trips * .85, this.points = this.trips * .9]
-// 	const long = [this.points = this.trips * 1.2] 
-// 	// const random tip [] <-- 
 
-// 	this.origin: [
-// 	{neighborhood:function(){this.points = this.trips * .89}}, //put curly values inside of an array √√√
-// 	{downtown:function(){this.points = this.trips * .89}}, //try Math.floor(Math.random() * )
-// 	{airport:function(){this.points = this.trips * .89}},
-// 	{suburbub:function(){this.points = this.trips * .89}}
-// 	]
-// 	// based on origin, set random dest -- n, d, a, sub
+// define rounds and goals. firstly finish building out class and scoreboad. then go to goal setter method. 
+	// store goal (and make it higher)
+	// check goal on next trip
+	// reduce count
 
-// 	if (origin === this.neighborhood){
-// 		//const destination = [Math.floor(Math.random() * origin.length)
-// 		//keep track of user 
-// 		this.points = this.trips * .89
-// 	// and short/long (dist) -- dictates earnings
-// 		}
-// 	// getValue() {}
-// 	}
 
-// } //end of class
+// if goal met -- let them win a day -- endDay()
+	// change goals to array 
+	// track days
+	// after last day, after last trip, win/lose?
 
 
 
+// where is user (n, s, d, a) -- store data here <--- why am I storing this data
 
 
 class Trip {
@@ -86,6 +72,7 @@ const game = {
 
 
 		// reduce trips left
+
 
 		// create Trip -- instantiate (later: use currentRegion)
 		const nextTrip = new Trip() // value automatically set
@@ -172,7 +159,7 @@ const game = {
 
 	},
 
-	decline() { //skip to defining a rounds and goals. firstly finish building out class and scoreboad. then go to goal setter method. 
+	decline() { 
 		// -1 point, tell user, 
 
 		// pickWhereToStartMessage
@@ -201,23 +188,9 @@ const game = {
 		// setAttribute,
 		region.appendChild(dtRequest) //appending a p to a button may be problematic. consider appending a button to the p tag. 
 		
-		// on accept do the following 
-		// const origin = this.central // not yet an option
-		// const destination = //Math.floor(Math.random() * mixedtrips.length)// not yet an option
-		// if (origin === central and destination === n, s, ap, or, dt) {
-			//}
 
 	},
 
-	// where is user (n, s, d, a) -- store data here <--- why am I storing this data
-
-
-// 	// choseLocation: function(Origin) {
-// 		// set location //<-- this.
-// 		// once sets, random trip
-// 	// }
-
-// 	// shortTrip: function () { //redacted },
 
 }//End of Game Object 
 
@@ -263,16 +236,6 @@ document.querySelector('.rating').addEventListener('click', (e) => {
 	// console.log(e.target);
 	game.displayTripRequest() // change to get next	
 })
-
-// document.querySelector('#confirm').onclick = function () {// move outside of obj later. insert actual functionality also. 
-// 	console.log(e.target);
-
-// 	game.pickWhereToStartMessage()	
-	
-// 	;}
-
-// document.querySelector('#confirm').addEventListener('click', game.pickWhereToStartMessage(){
-	// document.querySelector('#choose-region').hidden = true;}, false)
 
 
 
