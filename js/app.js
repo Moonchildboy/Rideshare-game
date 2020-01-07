@@ -42,7 +42,6 @@ class Trip {
 
 }
 
-
 const game = { 
 	points: 0, // 
 	days: 0, // equivalent to rounds
@@ -93,9 +92,8 @@ const game = {
 /* 1. 	
 
 		Also add rating buttons in html and hide them
-*/
-		
-	},//
+*/		
+	},
 
 	accept() {
 		const displayButtons = document.querySelectorAll('.displayRequest')
@@ -106,39 +104,47 @@ const game = {
 		const status = document.querySelector('#options')
 
 		// text telling what happened -- 28 pts rider was rude etc
-		status.innerText = `you've earned ${this.tripRequest.value}`  //from where should earnings be pulled?
+		status.innerText = `you've earned $${this.tripRequest.value}!`  //from where should earnings be pulled?
 		const acknowledgement = document.querySelector('#okay')
 		acknowledgement.style.display = 'inline-block'
 
-		// store trip in array
+		// store trip in the trips array. use this array of objects to access the kpi in the scoreboard method.
 		const storeTrip = this.trips.push(this.tripRequest)
-		console.log(storeTrip);
-		console.log(this.trips);
 
+		// do not ca
 
 		// prompt for rating (add more text) -- show ragin buttons <--- consider a seperate method
-
 	},
+
 	updateScoreboard() { 
+
+		const acknowledgement = document.querySelector('#okay')
+		acknowledgement.style.display = 'none'
 		// updateScoreboard() method 
 
 		// adds points to scoreboard 
-		for(let i = 0; i < trips.length; i ++){
+		for(let i = 0; i < this.trips.length; i ++){
 			this.points += this.trips[i].value
-			const kpiPoints = querySelector('#track-points')
+			const kpiPoints = document.querySelector('#track-points')
 			kpiPoints.innerHTML = this.points
 			// console.log(this.points);
 			// this.updateScoreboard()
 			console.log('this is the scoreboard');
 		}
+		this.rateRider() //should this be called here or on a button click
 	},
 
 	rateRider() {
+		const rate = document.querySelector('#options')
+		options.innerText = 'Rate your rider ...'
 
-		// hide rating buttons
+		// call all the buttons
+		const ratings = document.querySelectorAll('.rating')
 
-		// getNextTrip()
-
+		for (let i = 0; i < ratings.length; i ++) {
+			ratings[i].style.display = 'inline-block'
+		}
+		// hide ratings buttons
 
 	},
 
@@ -149,7 +155,6 @@ const game = {
 		// pickWhereToStartMessage
 
 	},
-
 
 	goalSetter(){
 
@@ -170,7 +175,6 @@ const game = {
 		dtRequest.innerText = `you've have a request`
 		// setAttribute,
 		region.appendChild(dtRequest) //appending a p to a button may be problematic. consider appending a button to the p tag. 
-
 		
 		// on accept do the following 
 		// const origin = this.central // not yet an option
@@ -178,9 +182,9 @@ const game = {
 		// if (origin === central and destination === n, s, ap, or, dt) {
 			//}
 
-	}
+	},
 
-// 	// where is user (n, s, d, a) -- store data here <--- why am I storing this data
+	// where is user (n, s, d, a) -- store data here <--- why am I storing this data
 
 
 // 	// choseLocation: function(Origin) {

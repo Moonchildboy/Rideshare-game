@@ -139,6 +139,12 @@ div {
 }
 
 /*.confirm{}*/
+.rating{
+	border:none;
+	background:none;
+	color:red;
+	font-size:25px;
+}
 
 .hidden {
 	display: none;
