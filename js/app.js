@@ -7,7 +7,7 @@
 	// reduce count
 
 
-// if goal met -- let them win a day -- endDay()
+// if goal met -- let them win a day -- endDay() <<---- another conversation. 
 	// change goals to array 
 	// track days
 	// after last day, after last trip, win/lose?
@@ -30,7 +30,7 @@ class Trip {
 
 const game = { 
 	points: 0, // 
-	days: 0, // equivalent to rounds
+	days: 1, // equivalent to rounds
 	trips: [], /// number  of trips is trips.length
 	currentRegion: "", // this will be set when user clicks region
 	tripRequest: null, // defined in the getNextTrip() method
@@ -232,10 +232,12 @@ document.querySelector('#okay').addEventListener('click', (e) => {
 })
 
 // change to querySelectorAll -- use for loop to add listeners to each
-document.querySelector('.rating').addEventListener('click', (e) => {
-	// console.log(e.target);
-	game.displayTripRequest() // change to get next	
-})
+const fourStars = document.querySelectorAll('.rating')
+for(i = 0; i < fourStars.length; i ++){
+fourStars[i].addEventListener('click', (e) => {
+;
+	game.getNextTrip() 	
+})}
 
 
 
