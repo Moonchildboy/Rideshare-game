@@ -23,22 +23,24 @@ class Trip {
 	constructor() { //(origin, destination) 
 
 		// later: use origin + destination to determine value
-		this.value = Math.floor(Math.random() * 30)
+		this.value = Math.floor(Math.random() * 10)
 	}
 
 }
 
 const game = { 
-	points: 0, // 
-	days: 1, // equivalent to rounds
-	trips: [], /// number  of trips is trips.length
 	currentRegion: "", // this will be set when user clicks region
+	points: 0, // 
 	tripRequest: null, // defined in the getNextTrip() method
+	days: 0, // equivalent to rounds
+	dailyGoal: 0,
+	trips: [], /// number  of trips is trips.length
 	userLocation: [], // base
 
-	// trips left -- so you can lose -- limit 10 or 12
+	// trips left -- so you can lose -- limit 10 <<-- maybe
 
-	// today's goal
+	// trips for the week []
+	// goals for the week []
 
 	// called when user clicks button
 	chooseRegion(region) {
@@ -51,28 +53,77 @@ const game = {
 
 
 		this.getNextTrip()
-
-
 	},
 
 	getNextTrip() {
-
+		console.log(game);
 		// check stuff
 
-		// if 0 -- 
-			// if goal not met 
+		// if goal met
+			// let them stop offer them to stop? (win for 1 round)
+		if (this.points >= this.dailyGoal){
+			console.log("win")
+			const options = document.querySelector('#options')
+			const ratings = document.querySelectorAll('.rating')
+
+			ratings[0].style.display = 'none'
+			ratings[1].style.display = 'none'
+			ratings[2].style.display = 'none'
+			ratings[3].style.display = 'none'
+
+			const offline = document.querySelector('#go-offline')
+			offline.style.display = 'inline-block'
+			const keepDriving = document.querySelector('#keep-driving')
+			keepDriving.style.display = 'inline-block'
+
+			options.innerText = 'You\'ve met your goal! Go offline?' //create a go offline button
+
+			return 
+		}
+		const dayOfWk = document.querySelector('#days')
+		dayOfWk.innerHTML = this.days
+
+		// after 10 trips
+		if (this.trips.length === 10) { // rounds should increase by 1
+			
+			console.log("day");
+			this.days += 1
+
+			// check lose
+			if(this.points < this.dailyGoal) {// supposed lose scenario
+				console.log("lose")
+
+				// if goal not met 
+				const ratings = document.querySelectorAll('.rating')
+
+				ratings[0].style.display = 'none'
+				ratings[1].style.display = 'none'
+				ratings[2].style.display = 'none'
+				ratings[3].style.display = 'none'
+
+				const options = document.querySelector('#options')
+				options.innerText = 'Might as well go offline'
+				
+				return
 				// lose 
-				// return 
+
+
+			} else {
+				// win 
+				// good job see you tomorrow
+			}
+
+			// reset goal for tomorrow
+			// change scoreboard -- add today's data, 
+			// reset daily data, and show, move things to other arrays, set everything back to 0/null/""
+			// prompt choose region
+
+		}
 
 
 		// did they meet their goal?
 
-		// if goal met
-			// let them stop offer them to stop? (win for 1 round)
-
-
 		// reduce trips left
-
 
 		// create Trip -- instantiate (later: use currentRegion)
 		const nextTrip = new Trip() // value automatically set
@@ -81,8 +132,7 @@ const game = {
 		this.tripRequest = nextTrip
 		console.log('this is trip requests',this.tripRequest);
 
-		this.displayTripRequest() //perhaps shouldn't call here as much as in a listener
-
+		this.displayTripRequest() //perhaps shouldn't call here as much as in a listener //, may be overriding 
 	},
 
 	lose() {
@@ -107,7 +157,6 @@ const game = {
 		ratings[1].style.display = 'none'
 		ratings[2].style.display = 'none'
 		ratings[3].style.display = 'none'
-
 	},
 
 	accept() {
@@ -119,7 +168,7 @@ const game = {
 		const status = document.querySelector('#options')
 
 		// text telling what happened -- 28 pts rider was rude etc
-		status.innerText = `you've earned $${this.tripRequest.value}!`  //from where should earnings be pulled?
+		status.innerText = `You've earned $${this.tripRequest.value}!`  //from where should earnings be pulled?
 		const acknowledgement = document.querySelector('#okay')
 		acknowledgement.style.display = 'inline-block'
 
@@ -163,38 +212,41 @@ const game = {
 		// -1 point, tell user, 
 
 		// pickWhereToStartMessage
-
 	},
 
 	goalSetter(){
 
-		const bills = [9, 14, 19] 
+		const bills = [100, 150, 250, 300] 
 
 		const goals = document.querySelector("#goal-text")
 
-		const interface = document.createElement('p')
-		//if points are less than this number by the end of the day, player loses round. 
+		const interface = document.createElement('p') //consider creating in html in order to hide and show
+		//if points are less than this number by the end of the day, player loses round.
+		const rndBill = bills[Math.floor(Math.random() * bills.length)] 
 		// store goal in this. today's goal
-		interface.innerText = `Make at least $${bills[Math.floor(Math.random() * bills.length)]} today!` 
+		interface.innerText = `Make at least $${rndBill} today!` 
 
-		goals.appendChild(interface)
+		this.dailyGoal += rndBill
+		const goal = document.querySelector('#daily-goal')
+		goal.innerText = rndBill
+
+		goals.appendChild(interface) //consider creating in html
 
 	},
 
-	requestCycleCentral () { // 1B. on click of the downtown button call the following code block. // call central param to denote origin in if statment
+	requestCycle () { // 1B. on click of the downtown button call the following code block. // call central param to denote origin in if statment
 		const region = document.querySelector('#downtown') //button
 		const dtRequest = document.createElement('p')
 		dtRequest.innerText = `you've have a request`
+		// region = 
 		// setAttribute,
 		region.appendChild(dtRequest) //appending a p to a button may be problematic. consider appending a button to the p tag. 
-		
-
 	},
 
 
 }//End of Game Object 
 
-
+console.log(game);
 // when game loads...
 game.goalSetter()
 
@@ -233,11 +285,11 @@ document.querySelector('#okay').addEventListener('click', (e) => {
 
 // change to querySelectorAll -- use for loop to add listeners to each
 const fourStars = document.querySelectorAll('.rating')
-for(i = 0; i < fourStars.length; i ++){
-fourStars[i].addEventListener('click', (e) => {
-;
-	game.getNextTrip() 	
-})}
+for(i = 0; i < fourStars.length; i++){
+	fourStars[i].addEventListener('click', (e) => {
+		game.getNextTrip() 	
+	})
+}
 
 
 

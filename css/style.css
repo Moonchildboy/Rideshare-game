@@ -58,6 +58,7 @@ div {
   	left: 10%;
   	text-align: center;
   	padding:25px;
+  	box-shadow: 0px 10px 14px -8px grey;
 }
 /*downtown div*/
 #central{ 
@@ -71,6 +72,8 @@ div {
   	text-align: left;
   	color:white;
   	padding: 5px;
+  	box-shadow: 0px 10px 14px -8px grey;
+
 }
 /*downtown button*/
 #downtown{
@@ -89,6 +92,7 @@ div {
   	left: 5%;
   	color: white;
   	padding: 5px;
+  	box-shadow: 0px 10px 14px -8px grey;
 }
 /*button*/
 #nw{
@@ -106,11 +110,13 @@ div {
 	display: inline-block;
 	background-color: purple;
 	border-radius: 20px;
-	top: 38%;
+	top: 54%;
   	left: 25%;
   	text-align: left;
   	color:white;
   	padding: 5px;
+  	box-shadow: 0px 10px 14px -8px grey;
+
 }
 /*button*/
 #w{
@@ -121,6 +127,7 @@ div {
 	border:none;	
 	text-align: auto 0;
 }
+/*div*/
 #neighborhood{
 	background-color: purple;
 	position: absolute;
@@ -128,7 +135,10 @@ div {
   	left: 68%;
   	color: white;
   	padding: 5px;
+  	box-shadow: 0px 10px 14px -8px grey;
+
 }
+/*button*/
 #s{
 	color:red;
 	font-size: 15px;
