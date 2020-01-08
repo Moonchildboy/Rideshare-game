@@ -33,6 +33,7 @@ div {
   	text-align: left;
   	color:white;
   	padding: 5px;
+  	box-shadow: 0px 10px 14px -8px grey;
 }
 #goal-text {
 	position: absolute;
@@ -44,7 +45,9 @@ div {
 	top: 75%;
   	left: 10%;
   	text-align: center;
-  	padding:25px;	
+  	padding:25px;
+  	box-shadow: 0px 10px 14px -8px grey;
+	
 }
 #choose-region {
 	/*display: none;*/

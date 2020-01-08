@@ -80,15 +80,15 @@ const game = {
 
 			return 
 		}
-		const dayOfWk = document.querySelector('#days')
-		dayOfWk.innerHTML = this.days
 
 		// after 10 trips
 		if (this.trips.length === 10) { // rounds should increase by 1
 			
-			console.log("day");
+			console.log("day", this.trips.length);
 			this.days += 1
 
+			const dayOfWk = document.querySelector('#days')
+			dayOfWk.innerHTML = this.days
 			// check lose
 			if(this.points < this.dailyGoal) {// supposed lose scenario
 				console.log("lose")
@@ -103,6 +103,9 @@ const game = {
 
 				const options = document.querySelector('#options')
 				options.innerText = 'Might as well go offline'
+
+				const offline = document.querySelector('#go-offline')
+				offline.style.display = 'inline-block'
 				
 				return
 				// lose 
@@ -111,6 +114,8 @@ const game = {
 			} else {
 				// win 
 				// good job see you tomorrow
+				const options = document.querySelector('#options')
+				options.innerText = 'Good Job! Back at it tomorrow.'
 			}
 
 			// reset goal for tomorrow
@@ -120,26 +125,26 @@ const game = {
 
 		}
 
-
 		// did they meet their goal?
 
-		// reduce trips left
+		// reduce trips left //<-- maybe
 
 		// create Trip -- instantiate (later: use currentRegion)
 		const nextTrip = new Trip() // value automatically set
 				
 		// object -- store in this.tripRequest √√√
 		this.tripRequest = nextTrip
-		console.log('this is trip requests',this.tripRequest);
+		// console.log('this is trip requests',this.tripRequest);
 
 		this.displayTripRequest() //perhaps shouldn't call here as much as in a listener //, may be overriding 
 	},
 
-	lose() {
+	lose() { // should contain what happens after go offline is clicked. 
 
 	},
 
-	displayTripRequest() { 
+	displayTripRequest() {
+
 
 		const options = document.querySelector('#options')
 	
@@ -234,14 +239,14 @@ const game = {
 
 	},
 
-	requestCycle () { // 1B. on click of the downtown button call the following code block. // call central param to denote origin in if statment
-		const region = document.querySelector('#downtown') //button
-		const dtRequest = document.createElement('p')
-		dtRequest.innerText = `you've have a request`
-		// region = 
-		// setAttribute,
-		region.appendChild(dtRequest) //appending a p to a button may be problematic. consider appending a button to the p tag. 
-	},
+	// requestCycle () { // 1B. on click of the downtown button call the following code block. // call central param to denote origin in if statment
+	// 	const region = document.querySelector('#downtown') //button
+	// 	const dtRequest = document.createElement('p')
+	// 	dtRequest.innerText = `you've have a request`
+	// 	// region = 
+	// 	// setAttribute,
+	// 	region.appendChild(dtRequest) //appending a p to a button may be problematic. consider appending a button to the p tag. 
+	// },
 
 
 }//End of Game Object 
@@ -257,16 +262,19 @@ document.querySelector('#downtown').addEventListener('click', (e) => {//
 	// game.
 	
 })
+
 document.querySelector('#airport').addEventListener('click', (e) => {// move outside of obj later. insert actual functionality also. 
 	// console.log(e.target);
 	game.chooseRegion('Airport') // pass argument here
 	
 })
+
 document.querySelector('#suburb').addEventListener('click', (e) => {// move outside of obj later. insert actual functionality also. 
 	// console.log(e.target);
 	game.chooseRegion('Suburb') // pass argument here
 	
 })
+
 document.querySelector('#neighborhood').addEventListener('click', (e) => {// move outside of obj later. insert actual functionality also. 
 	// console.log(e.target);
 	game.chooseRegion('Neighborhood') // pass argument here
